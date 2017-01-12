@@ -1,0 +1,38 @@
+*{
+	font-family: cursive;
+  box-sizing: border-box;
+}
+/*whole form*/
+#frame{
+  border: 1px solid #c2c2a3;
+  padding: 20px;
+  width: 400px;
+  height: 520px;
+  margin: 50px auto;
+  background-color: #FFF;
+}
+#frame_bk{
+  width: 600px;
+  height: 620px;
+  margin: 20px auto;
+  padding: 10px;
+  background-color: #e0e0d1;
+}
+/*whole form item*/
+#item, #item-value{
+  float: left;
+  margin-left: 20px;
+}
+.item-style, .item-value-style, .item-value-radio{
+  height: 36px;
+  margin: 0 0 5px 0;
+  padding-bottom: 1px;
+  border-bottom-width: 2px;
+  font-style: 18px;
+}
+.item-style{
+  padding-top: 10px;
+}
+.item-value-radio{
+  padding-top: 10px;
+}
