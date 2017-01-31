@@ -1,0 +1,277 @@
+[
+    {
+        "_id": 0,
+        "scores": [
+            {
+                "type": "exam",
+                "score": 2
+            },
+            {
+                "type": "quiz",
+                "score": 12
+            },
+            {
+                "type": "homework",
+                "score": 7
+            },
+            {
+                "type": "homework",
+                "score": 36
+            }
+        ],
+        "firstName": "aimee",
+        "lastName": "Zank",
+        "fullName": "aimee Zank",
+        "age": 10
+    },
+    {
+        "_id": 1,
+        "scores": [
+            {
+                "type": "exam",
+                "score": 61
+            },
+            {
+                "type": "quiz",
+                "score": 53
+            },
+            {
+                "type": "homework",
+                "score": 72
+            },
+            {
+                "type": "homework",
+                "score": 35
+            }
+        ],
+        "firstName": "Aurelia",
+        "lastName": "Menendez",
+        "fullName": "Aurelia Menendez",
+        "age": 8
+    },
+    {
+        "_id": 2,
+        "scores": [
+            {
+                "type": "exam",
+                "score": 68
+            },
+            {
+                "type": "quiz",
+                "score": 7
+            },
+            {
+                "type": "homework",
+                "score": 21
+            },
+            {
+                "type": "homework",
+                "score": 67
+            }
+        ],
+        "firstName": "Corliss",
+        "lastName": "Zuk",
+        "fullName": "Corliss Zuk",
+        "age": 1
+    },
+    {
+        "_id": 3,
+        "scores": [
+            {
+                "type": "exam",
+                "score": 72
+            },
+            {
+                "type": "quiz",
+                "score": 25
+            },
+            {
+                "type": "homework",
+                "score": 2
+            },
+            {
+                "type": "homework",
+                "score": 43
+            }
+        ],
+        "firstName": "Bao",
+        "lastName": "Ziglar",
+        "fullName": "Bao Ziglar",
+        "age": 3
+    },
+    {
+        "_id": 4,
+        "scores": [
+            {
+                "type": "exam",
+                "score": 79
+            },
+            {
+                "type": "quiz",
+                "score": 91
+            },
+            {
+                "type": "homework",
+                "score": 35
+            },
+            {
+                "type": "homework",
+                "score": 20
+            }
+        ],
+        "firstName": "Zachary",
+        "lastName": "Langlais",
+        "fullName": "Zachary Langlais",
+        "age": 9
+    },
+    {
+        "_id": 5,
+        "scores": [
+            {
+                "type": "exam",
+                "score": 45
+            },
+            {
+                "type": "quiz",
+                "score": 26
+            },
+            {
+                "type": "homework",
+                "score": 11
+            },
+            {
+                "type": "homework",
+                "score": 64
+            }
+        ],
+        "firstName": "Wilburn",
+        "lastName": "Spiess",
+        "fullName": "Wilburn Spiess",
+        "age": 3
+    },
+    {
+        "_id": 6,
+        "scores": [
+            {
+                "type": "exam",
+                "score": 38
+            },
+            {
+                "type": "quiz",
+                "score": 29
+            },
+            {
+                "type": "homework",
+                "score": 17
+            },
+            {
+                "type": "homework",
+                "score": 82
+            }
+        ],
+        "firstName": "Jenette",
+        "lastName": "Flanders",
+        "fullName": "Jenette Flanders",
+        "age": 1
+    },
+    {
+        "_id": 7,
+        "scores": [
+            {
+                "type": "exam",
+                "score": 91
+            },
+            {
+                "type": "quiz",
+                "score": 43
+            },
+            {
+                "type": "homework",
+                "score": 68
+            },
+            {
+                "type": "homework",
+                "score": 97
+            }
+        ],
+        "firstName": "Salena",
+        "lastName": "Olmos",
+        "fullName": "Salena Olmos",
+        "age": 5
+    },
+    {
+        "_id": 8,
+        "scores": [
+            {
+                "type": "exam",
+                "score": 23
+            },
+            {
+                "type": "quiz",
+                "score": 15
+            },
+            {
+                "type": "homework",
+                "score": 76
+            },
+            {
+                "type": "homework",
+                "score": 74
+            }
+        ],
+        "firstName": "Daphne",
+        "lastName": "Zheng",
+        "fullName": "Daphne Zheng",
+        "age": 1
+    },
+    {
+        "_id": 9,
+        "scores": [
+            {
+                "type": "exam",
+                "score": 98
+            },
+            {
+                "type": "quiz",
+                "score": 98
+            },
+            {
+                "type": "homework",
+                "score": 13
+            },
+            {
+                "type": "homework",
+                "score": 26
+            }
+        ],
+        "firstName": "Sanda",
+        "lastName": "Ryba",
+        "fullName": "Sanda Ryba",
+        "age": 8
+    },
+    {
+        "_id": 10,
+        "scores": [
+            {
+                "type": "exam",
+                "score": 46
+            },
+            {
+                "type": "quiz",
+                "score": 99
+            },
+            {
+                "type": "homework",
+                "score": 20
+            },
+            {
+                "type": "homework",
+                "score": 56
+            }
+        ],
+        "firstName": "Denisha",
+        "lastName": "Cast",
+        "fullName": "Denisha Cast",
+        "age": 3
+    }
+]
