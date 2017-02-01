@@ -6,5 +6,8 @@
     "start": "node server.js"
   },
   "author": "albeechen",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.14.1"
+  }
 }
