@@ -2,84 +2,84 @@ const PORT = process.env.PORT || 3000;
 const serverApp = require('express')();
 serverApp.set('port', PORT);
 
+//const bodyParser = require('body-parser')
 const path = require('path');
 const fs = require('fs');
 const filePath = path.join(__dirname, 'students.json');
-
 const addnew_filePath = path.join(__dirname, 'newstudent.json');
-//Middleware
-var studentDatas = "";
+
 //middleware
+//serverApp.use(bodyParser.json(addnew_filePath));
 serverApp.use('/', (req, res, next) => {
 	fs.readFile(filePath, 'utf8', (err, data) => {
-		if (err){
-      return err;
+		if(err){
+      return res.send(err);
     }
-		studentDatas = JSON.parse( data );
+		req.studentDatas = JSON.parse( data );
 		next();
 	});
 });
 
-const checkIdIsExist = (numId) => {
-	var newstudent = studentDatas[numId];
-  if(newstudent === undefined ){
-    	return false;
-  }else{
-    	return true;
+serverApp.use('/student/:id', (req, res, next) => {
+  req.dataposition = -1;
+  for(var i = 0; i < req.studentDatas.length; i++){
+    if(req.studentDatas[i]["_id"] == req.params.id){
+      req.dataposition = i;
+      break;
+    }
   }
-};
+  //if(req.dataposition == -1){
+    //res.send('not match');
+  //}
+  next();
+});
 
-const saveFile = () => {
-	fs.writeFile(filePath, JSON.stringify(studentDatas, null, 4));
+const saveFile = (allstudentDatas) => {
+	fs.writeFile(filePath, JSON.stringify(allstudentDatas, null, 4));
 };
 
 //Show lists of all students.
 serverApp.get('/', (req, res) => {
-  res.send(JSON.stringify(studentDatas));	
+  res.send(JSON.stringify(req.studentDatas));	
 });
 
 //Add detail of new students.
-serverApp.post('/addStudent', (req, res) => {
+serverApp.post('/student/:id', (req, res) => {
   fs.readFile(addnew_filePath, 'utf8', (err, data) => {
-    if (err){
-      return err;
+    if(err){
+      return res.send(err);
     }
-	  var newStudent = JSON.parse( data );
-    //If post student isn't exist, push to the file
-    if(!checkIdIsExist(newStudent[0]["_id"])){
-      studentDatas.push(newStudent[0]);
-      //If post student is exist, replace it
+	  var newstudent = JSON.parse( data );
+    //if student isn't exist, req.dataposition will be -1
+    if(req.dataposition === -1){
+      req.studentDatas.push(newstudent);
     }else{
-      studentDatas[newId] = newStudent[0];
+      req.studentDatas[req.dataposition] = newstudent;
     }
-    saveFile();
-    res.end(JSON.stringify(studentDatas));
+    saveFile(req.studentDatas);
+    res.end("Add successfully!");
   });
 });
 
 //Show detail of a student.
-serverApp.put('/id/:id', (req, res) => {
- 	var numId = req.params.id;
- 	//If student is exist, show it
- 	if(checkIdIsExist(numId)){
-		res.send(JSON.stringify(studentDatas[numId]));
+serverApp.put('/student/:id', (req, res) => {
+  if(req.dataposition === -1){
+    //if student isn't exist, req.dataposition will be -1
+    res.send('Not exist');
   }else{
-	//if student isn't exist, show not exist
-  	res.send('Not exist');
+	  res.send(JSON.stringify(req.studentDatas[req.dataposition]));
   }
 });
 
 //Delete an existing student.
-serverApp.delete('/id/:id', (req, res) => {
-  var numId = req.params.id;
-  //If student is exist, delete it
-  if(checkIdIsExist(numId)){
-    delete studentDatas[numId];
-    saveFile();
-    res.end('deleted/n' + JSON.stringify(studentDatas));
+serverApp.delete('/student/:id', (req, res) => {
+  if(req.dataposition === -1){
+    //if student isn't exist, req.dataposition will be -1
+    res.send('Not exist');
 	}else{
-	  //if student isn't exist, show not exist
-		res.send('Not exist');
+		req.studentDatas.splice(req.dataposition, 1);
+    saveFile(req.studentDatas);
+    res.end('deleted successfully!');
 	}
 });
 
