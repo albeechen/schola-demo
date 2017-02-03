@@ -1,27 +1,25 @@
-[
-    {
-        "_id": 11,
-        "scores": [
-            {
-                "type": "exam",
-                "score": 2
-            },
-            {
-                "type": "quiz",
-                "score": 12
-            },
-            {
-                "type": "homework",
-                "score": 7
-            },
-            {
-                "type": "homework",
-                "score": 36
-            }
-        ],
-        "firstName": "aimee",
-        "lastName": "Zank",
-        "fullName": "aimee Zank",
-        "age": 10
-    }
-]
+{
+    "_id": 11,
+    "scores": [
+        {
+            "type": "exam",
+            "score": 2
+        },
+        {
+            "type": "quiz",
+            "score": 12
+        },
+        {
+            "type": "homework",
+            "score": 7
+        },
+        {
+            "type": "homework",
+            "score": 36
+        }
+    ],
+    "firstName": "aimee",
+    "lastName": "Zank",
+    "fullName": "aimee Zank",
+    "age": 10
+}
