@@ -37,7 +37,10 @@ serverApp.use('/student/:id', (req, res, next) => {
 });
 
 const saveFile = (allstudentDatas) => {
-    fs.writeFile(filePath, JSON.stringify(allstudentDatas, null, 4));
+    fs.writeFile(filePath, JSON.stringify(allstudentDatas, null, 4), (err) =>{
+        if(err)
+            return res.send('write file fail');
+    });
 };
 
 //Show lists of all students.
