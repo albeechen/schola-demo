@@ -26,8 +26,9 @@ serverApp.use('/student/:id', (req, res, next) => {
             return element._id == req.params.id;
         }
     });
-    if (matchResult && req.method === "POST")
+    if (matchResult && req.method === "POST") {
         return res.send('existed. Please use put');
+    }
     if (!matchResult && req.method != "POST") {
         return res.send('no match');
     } else {
@@ -36,11 +37,12 @@ serverApp.use('/student/:id', (req, res, next) => {
 });
 
 const saveFile = (req, res) => {
-    fs.writeFile(filePath, JSON.stringify(req.studentDatas, null, 4), (err) =>{
-        if(err)
-            res.status(500).json({error: err});
-        else
+    fs.writeFile(filePath, JSON.stringify(req.studentDatas, null, 4), (err) => {
+        if (err) {
+            res.status(500).json({ error: err });
+        } else {
             res.end('successfully!');
+        }
     });
 };
 
