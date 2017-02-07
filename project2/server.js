@@ -6,7 +6,6 @@ const bodyParser = require('body-parser')
 const path = require('path');
 const fs = require('fs');
 const filePath = path.join(__dirname, 'students.json');
-const addnew_filePath = path.join(__dirname, 'newstudent.json');
 
 //middleware
 serverApp.use(bodyParser.json());
@@ -36,10 +35,12 @@ serverApp.use('/student/:id', (req, res, next) => {
     }
 });
 
-const saveFile = (allstudentDatas) => {
-    fs.writeFile(filePath, JSON.stringify(allstudentDatas, null, 4), (err) =>{
+const saveFile = (req, res) => {
+    fs.writeFile(filePath, JSON.stringify(req.studentDatas, null, 4), (err) =>{
         if(err)
-            return res.send('write file fail');
+            res.status(500).json({error: err});
+        else
+            res.end('successfully!');
     });
 };
 
@@ -56,22 +57,19 @@ serverApp.get('/student/:id', (req, res) => {
 //Add detail of new students.
 serverApp.post('/student/:id', (req, res) => {
     req.studentDatas.push(req.body);
-    saveFile(req.studentDatas);
-    res.end(JSON.stringify(req.studentDatas[req.selectedStudentIndex]));
+    return saveFile(req, res);
 });
 
 //Modified of a student.
 serverApp.put('/student/:id', (req, res) => {
     req.studentDatas[req.selectedStudentIndex] = req.body;
-    saveFile(req.studentDatas);
-    res.end(JSON.stringify(req.studentDatas[req.selectedStudentIndex]));
+    return saveFile(req, res);
 });
 
 //Delete an existing student.
 serverApp.delete('/student/:id', (req, res) => {
     req.studentDatas.splice(req.selectedStudentIndex, 1);
-    saveFile(req.studentDatas);
-    res.end('deleted successfully!');
+    return saveFile(req, res);
 });
 
 serverApp.listen(serverApp.get('port'), () => {
