@@ -1,0 +1,10 @@
+{
+  "name": "project3",
+  "version": "0.0.1",
+  "description": "Search Two Collection Application",
+  "main": "app.js",
+  "author": "albee",
+  "dependencies": {
+    "mongodb": "3.4"
+  }
+}
