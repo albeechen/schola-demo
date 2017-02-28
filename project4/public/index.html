@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>XML req tester</title>
+	</head>
+	<body>
+		<h1>XML req tester</h1>
+		<button type="button" onclick="getStudents()">tester</button>
+		<script>
+			function getStudents() {
+			    var XHR = new XMLHttpRequest();
+			    XHR.open("GET", "http://127.0.0.1:8888", true);
+			    XHR.onload = function() 
+			    {
+			        var response = JSON.parse(XHR.responseText); // XHR.response
+			        alert("work");
+			    }
+			    XHR.onerror = function() {
+			        alert("Error");
+			    }
+			    XHR.send();
+			}
+		</script>
+	</body>
+</html>
