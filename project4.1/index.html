@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Students List</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <h1>Students List</h1>
+    <form>
+        <button type="button" onclick="getStudents()">Show Students List</button>
+        <input type="text" placeholder="enter StudentId" id="search_studentId" oninput="processStudentId()">
+        <button type="button" onclick="getStudentId()">Get</button>
+        <button type="button" onclick="postStudentId()">Post</button>
+        <button type="button" onclick="putStudentId()">Update</button>
+        <button type="button" onclick="deleteStudentId()">Delete</button>
+    </form>
+    <br>
+    <br>
+    <div id="list"></div>
+    <script src="/js/xmlHttpRequest.js"></script>
+</body>
+
+</html>
