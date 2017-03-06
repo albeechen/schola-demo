@@ -6,7 +6,8 @@ const mongodb = require('mongodb');
 const dbClient = mongodb.MongoClient;
 const ObjectId = mongodb.ObjectID;
 const dbUrl = 'mongodb://localhost/students';
-const Router = require('./routes/router');
+const studentRouter = require('./routes/studentRouter');
+const classesRouter = require('./routes/classesRouter');
 
 
 let db;
@@ -28,5 +29,6 @@ app.use((req, res, next) => {
 });
 
 
-app.use(Router);
+app.use(studentRouter);
+app.use(classesRouter);
 app.listen(8888);

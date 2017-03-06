@@ -142,30 +142,30 @@ function putStudent() {
             alert('not exist');
         }
     }
-        XHR.onerror = function() {
-            alert("Error");
-        }
-        XHR.send(JSON.stringify(data));
-        getStudents();
+    XHR.onerror = function() {
+        alert("Error");
     }
+    XHR.send(JSON.stringify(data));
+    getStudents();
+}
 
-    function deleteStudent() {
-        var studentId = document.getElementById('search_studentId').value;
-        var url = "/students/" + studentId;
-        var XHR = new XMLHttpRequest();
-        XHR.open("delete", url, true);
-        XHR.setRequestHeader("Content-type", "application/json");
-        var data = {
-            'studentId': document.getElementById('studentId').value
-        };
-        XHR.onload = function() {
-            if (XHR.responseText == 'no match') {
-                alert('not exist');
-            }
+function deleteStudent() {
+    var studentId = document.getElementById('search_studentId').value;
+    var url = "/students/" + studentId;
+    var XHR = new XMLHttpRequest();
+    XHR.open("delete", url, true);
+    XHR.setRequestHeader("Content-type", "application/json");
+    var data = {
+        'studentId': document.getElementById('studentId').value
+    };
+    XHR.onload = function() {
+        if (XHR.responseText == 'no match') {
+            alert('not exist');
         }
-            XHR.onerror = function() {
-                alert("Error");
-            }
-            XHR.send(JSON.stringify(data));
-            getStudents();
-        }
+    }
+    XHR.onerror = function() {
+        alert("Error");
+    }
+    XHR.send(JSON.stringify(data));
+    getStudents();
+}
