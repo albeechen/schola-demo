@@ -23,7 +23,7 @@ function showAll(lists) {
         for (key in data) {
             var content = data[key];
             if (key === 'classes_docs')
-                continue;//content = data[key][0].className;
+                continue; //content = data[key][0].className;
             if (key != '_id') {
                 var text = document.createTextNode(content);
                 var cell = row.insertCell(index);
@@ -55,16 +55,16 @@ function SetStudentData(data) {
     document.getElementById('studentId').value = data[0].studentId;
 }
 
-function getStudentId() {
-    processStudentId();
+function getStudent() {
+    CreateNewRow();
     var studentId = document.getElementById('search_studentId').value;
     var url = '/students/' + studentId;
     var XHR = new XMLHttpRequest();
     XHR.open('GET', url, true);
     XHR.onload = function() {
-        if(XHR.responseText == 'no match'){
+        if (XHR.responseText == 'no match') {
             alert('not exist');
-        }else{
+        } else {
             var lists = JSON.parse(XHR.responseText);
             SetStudentData(lists);
         }
@@ -75,7 +75,7 @@ function getStudentId() {
     XHR.send();
 }
 
-function processStudentId() {
+function CreateNewRow() {
     var nodes = document.getElementById('list');
     while (nodes.hasChildNodes()) {
         nodes.removeChild(nodes.firstChild);
@@ -104,19 +104,20 @@ function getStudents() {
 }
 
 
-function postStudentId() {
+function postStudent() {
     var studentId = document.getElementById('search_studentId').value;
     var url = "/students/" + studentId;
     var XHR = new XMLHttpRequest();
-    XHR.open("post", url , true);
+    XHR.open("post", url, true);
     XHR.setRequestHeader("Content-type", "application/json");
     var data = {
-        'firstName': document.getElementById('firstName').value, 
+        'firstName': document.getElementById('firstName').value,
         'lastname': document.getElementById('lastname').value,
         'studentId': document.getElementById('studentId').value
     };
     XHR.onload = function() {
-        console.log(data);
+        if (XHR.responseText == 'existed. Please use update')
+            alert(XHR.responseText);
     }
     XHR.onerror = function() {
         alert("Error");
@@ -125,40 +126,46 @@ function postStudentId() {
     getStudents();
 }
 
-function putStudentId() {
+function putStudent() {
     var studentId = document.getElementById('search_studentId').value;
     var url = "/students/" + studentId;
     var XHR = new XMLHttpRequest();
-    XHR.open("put", url , true);
+    XHR.open("put", url, true);
     XHR.setRequestHeader("Content-type", "application/json");
     var data = {
-        'firstName': document.getElementById('firstName').value, 
+        'firstName': document.getElementById('firstName').value,
         'lastname': document.getElementById('lastname').value,
         'studentId': document.getElementById('studentId').value
     };
     XHR.onload = function() {
+        if (XHR.responseText == 'no match') {
+            alert('not exist');
+        }
     }
-    XHR.onerror = function() {
-        alert("Error");
+        XHR.onerror = function() {
+            alert("Error");
+        }
+        XHR.send(JSON.stringify(data));
+        getStudents();
     }
-    XHR.send(JSON.stringify(data));
-    getStudents();
-}
 
-function deleteStudentId() {
-    var studentId = document.getElementById('search_studentId').value;
-    var url = "/students/" + studentId;
-    var XHR = new XMLHttpRequest();
-    XHR.open("delete", url , true);
-    XHR.setRequestHeader("Content-type", "application/json");
-    var data = {
-        'studentId': document.getElementById('studentId').value
-    };
-    XHR.onload = function() {
-    }
-    XHR.onerror = function() {
-        alert("Error");
-    }
-    XHR.send(JSON.stringify(data));
-    getStudents();
-}
+    function deleteStudent() {
+        var studentId = document.getElementById('search_studentId').value;
+        var url = "/students/" + studentId;
+        var XHR = new XMLHttpRequest();
+        XHR.open("delete", url, true);
+        XHR.setRequestHeader("Content-type", "application/json");
+        var data = {
+            'studentId': document.getElementById('studentId').value
+        };
+        XHR.onload = function() {
+            if (XHR.responseText == 'no match') {
+                alert('not exist');
+            }
+        }
+            XHR.onerror = function() {
+                alert("Error");
+            }
+            XHR.send(JSON.stringify(data));
+            getStudents();
+        }

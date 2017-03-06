@@ -76,19 +76,21 @@ class ClassesController {
     }
 
     addStudent(req, res) {
-        //req.e
-        console.log(req.target);
-        req.target.student_ids = { $push: { student_ids: req.params.studentId } }, (err, results) => {
+        req.classes.update({
+            className: req.target.className
+        }, { $push: { student_ids: req.params.studentId } }, (err, results) => {
             if (err) {
                 res.send({ 'error': 'An error has occurred' });
             } else {
                 res.send(results);
             }
-        };
+        });
     }
 
     removeStudent(req, res) {
-        req.classes.update({ className: 'A' }, { $pull: { student_ids: { $in: [req.params.studentId] } } }, (err, results) => {
+        req.classes.update({
+            className: req.target.className
+        }, { $pull: { student_ids: { $in: [req.params.studentId] } } }, (err, results) => {
             if (err) {
                 res.send({ 'error': 'An error has occurred' });
             } else {

@@ -1,11 +1,12 @@
 {
-  "name": "project3",
+  "name": "project4.1",
   "version": "0.0.1",
-  "description": "Search Two Collection Application",
+  "description": "project4",
   "main": "app.js",
   "author": "albee",
   "dependencies": {
-    "mongodb": "3.4",
-    "express": "^4.14.1"
+    "dependency": "0.0.1",
+    "express": "^4.14.1",
+    "mongodb": "3.4"
   }
 }

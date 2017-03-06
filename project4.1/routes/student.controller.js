@@ -15,8 +15,10 @@ class StudentController {
             if (err) {
                 res.status(404).send(err);
             } else {
-                if (req.method != "POST" && result == '') {
+                if (result == '' && req.method != "POST") {
                     res.send('no match');
+                } else if (result != '' && req.method == "POST") {
+                    res.send('existed. Please use update');
                 } else {
                     req.target = result;
                     next();

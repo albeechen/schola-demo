@@ -6,13 +6,13 @@ const mongodb = require('mongodb');
 const dbClient = mongodb.MongoClient;
 const ObjectId = mongodb.ObjectID;
 const dbUrl = 'mongodb://localhost/students';
-const Router = require('./js/router');
+const Router = require('./routes/router');
 
 
 let db;
 app.use(bodyParser.json());
-app.use(express.static(__dirname + '/'));
-//connected to the mongoDB
+app.use(express.static(__dirname + '/public/'));
+//connected to the mongoDBs
 app.use((req, res, next) => {
     if (db) {
         req.db = db;
