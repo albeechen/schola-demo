@@ -1,0 +1,13 @@
+{
+  "name": "project4.2",
+  "version": "0.0.1",
+  "description": "project4.1 using promise",
+  "main": "app.js",
+  "author": "albee",
+  "dependencies": {
+    "dependency": "0.0.1",
+    "express": "^4.14.1",
+    "mongodb": "3.4",
+    "promise": "^7.1.1"
+  }
+}
