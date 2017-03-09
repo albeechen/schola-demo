@@ -1,4 +1,4 @@
-function CreateHeader() {
+function createHeader() {
     var list_header = ["firstName", "lastName", "studentId"];
     var table = document.createElement('table');
     table.setAttribute('border', '1');
@@ -35,7 +35,7 @@ function showAll(lists) {
     }
 }
 
-function EdiableStudentRow() {
+function ediableStudentRow() {
     var name_list = ["firstName", "lastname", "studentId"];
     var table = document.getElementById('data_table');
     var row = table.insertRow(1);
@@ -56,7 +56,7 @@ function setStudentData(data) {
 }
 
 function getStudentFromServer(studentId) {
-    CreateNewRow();
+    createNewRow();
     return new Promise((resolve, reject) => {
         var url = '/students/' + studentId;
         var XHR = new XMLHttpRequest();
@@ -87,13 +87,13 @@ function searchStudent() {
 }
 
 
-function CreateNewRow() {
+function createNewRow() {
     var nodes = document.getElementById('list');
     while (nodes.hasChildNodes()) {
         nodes.removeChild(nodes.firstChild);
     }
-    CreateHeader();
-    EdiableStudentRow("");
+    createHeader();
+    ediableStudentRow("");
 }
 
 
@@ -122,7 +122,7 @@ function getStudents() {
             while (nodes.hasChildNodes()) {
                 nodes.removeChild(nodes.firstChild);
             }
-            CreateHeader();
+            createHeader();
             return showAll(student);
         })
         .catch(function(err) {
