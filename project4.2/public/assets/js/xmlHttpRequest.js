@@ -49,16 +49,15 @@ function EdiableStudentRow() {
     }
 }
 
-function SetStudentData(data) {
+function setStudentData(data) {
     document.getElementById('firstName').value = data[0].firstName;
     document.getElementById('lastname').value = data[0].lastname;
     document.getElementById('studentId').value = data[0].studentId;
 }
 
-function getStudent() {
+function getStudentFromServer(studentId) {
     CreateNewRow();
-    var reqPromise = new Promise((resolve, reject) => {
-        var studentId = document.getElementById('search_studentId').value;
+    return new Promise((resolve, reject) => {
         var url = '/students/' + studentId;
         var XHR = new XMLHttpRequest();
         XHR.open('GET', url, true);
@@ -74,13 +73,19 @@ function getStudent() {
         }
         XHR.send();
     });
-
-    reqPromise.then((resolve) => {
-        SetStudentData(resolve);
-    }).catch((reject) => {
-        alert(reject);
-    });
 }
+
+function searchStudent() {
+    var studentId = document.getElementById('search_studentId').value;
+    return getStudentFromServer(studentId)
+        .then(function(student) {
+            return setStudentData(student);
+        })
+        .catch(function(err) {
+            console.log(err);
+        });
+}
+
 
 function CreateNewRow() {
     var nodes = document.getElementById('list');
@@ -92,8 +97,8 @@ function CreateNewRow() {
 }
 
 
-function getStudents() {
-    var reqPromise = new Promise((resolve, reject) => {
+function getStudentsFromServer() {
+    return new Promise((resolve, reject) => {
         var XHR = new XMLHttpRequest();
         XHR.open("GET", "/students", true);
         XHR.onload = function() {
@@ -108,23 +113,25 @@ function getStudents() {
         }
         XHR.send();
     });
-
-    reqPromise.then((resolve) => {
-        var nodes = document.getElementById('list');
-        while (nodes.hasChildNodes()) {
-            nodes.removeChild(nodes.firstChild);
-        }
-        CreateHeader();
-        showAll(resolve);
-    }).catch((reject) => {
-        console.log(reject);
-    });
 }
 
+function getStudents() {
+    return getStudentsFromServer()
+        .then(function(student) {
+            var nodes = document.getElementById('list');
+            while (nodes.hasChildNodes()) {
+                nodes.removeChild(nodes.firstChild);
+            }
+            CreateHeader();
+            return showAll(student);
+        })
+        .catch(function(err) {
+            console.log(err);
+        });
+}
 
-function postStudent() {
-    var reqPromise = new Promise((resolve, reject) => {
-        var studentId = document.getElementById('search_studentId').value;
+function postStudentFromServer(studentId) {
+    return new Promise((resolve, reject) => {
         var url = "/students/" + studentId;
         var XHR = new XMLHttpRequest();
         XHR.open("post", url, true);
@@ -146,17 +153,22 @@ function postStudent() {
         }
         XHR.send(JSON.stringify(data));
     });
-
-    reqPromise.then((resolve) => {
-        getStudents();
-    }).catch((reject) => {
-        alert(reject);
-    });
 }
 
-function putStudent() {
-    var reqPromise = new Promise((resolve, reject) => {
-        var studentId = document.getElementById('search_studentId').value;
+
+function postStudent() {
+    var studentId = document.getElementById('search_studentId').value;
+    return postStudentFromServer(studentId)
+        .then(function(student) {
+            return getStudents();
+        })
+        .catch(function(err) {
+            console.log(err);
+        });
+}
+
+function putStudentFromServer(studentId) {
+    return new Promise((resolve, reject) => {
         var url = "/students/" + studentId;
         var XHR = new XMLHttpRequest();
         XHR.open("put", url, true);
@@ -178,17 +190,21 @@ function putStudent() {
         }
         XHR.send(JSON.stringify(data));
     });
-
-    reqPromise.then((resolve) => {
-        getStudents();
-    }).catch((reject) => {
-        console.log(reject);
-    });
 }
 
-function deleteStudent() {
-    var reqPromise = new Promise((resolve, reject) => {
-        var studentId = document.getElementById('search_studentId').value;
+function putStudent() {
+    var studentId = document.getElementById('search_studentId').value;
+    return putStudentFromServer(studentId)
+        .then(function(student) {
+            return getStudents();
+        })
+        .catch(function(err) {
+            console.log(err);
+        });
+}
+
+function deleteStudentFromServer(studentId) {
+    return new Promise((resolve, reject) => {
         var url = "/students/" + studentId;
         var XHR = new XMLHttpRequest();
         XHR.open("delete", url, true);
@@ -208,10 +224,16 @@ function deleteStudent() {
         }
         XHR.send(JSON.stringify(data));
     });
+}
 
-    reqPromise.then((resolve) => {
-        getStudents();
-    }).catch((reject) => {
-        console.log(reject);
-    });
+
+function deleteStudent() {
+    var studentId = document.getElementById('search_studentId').value;
+    return deleteStudentFromServer(studentId)
+        .then(function(student) {
+            return getStudents();
+        })
+        .catch(function(err) {
+            console.log(err);
+        });
 }
